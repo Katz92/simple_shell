@@ -18,7 +18,7 @@ list_t *add_node(list_t **head, const char *str, int num)
 	new_head = malloc(sizeof(list_t));
 	if (new_head == NULL)
 		return (NULL);
-	_memset((void *)new_head, none, sizeof(list_t));
+	_memset((void *)new_head, nil, sizeof(list_t));
 	new_head->num = num;
 	if (str)
 	{
@@ -54,7 +54,7 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 	new_node = malloc(sizeof(list_t));
 	if (new_node == NULL)
 		return (NULL);
-	_memset((void *)new_node, none, sizeof(list_t));
+	_memset((void *)new_node, nil, sizeof(list_t));
 	new_node->num = num;
 	if (str)
 	{
@@ -85,7 +85,7 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 
 size_t print_list_str(const list_t *h)
 {
-	size_t index = none;
+	size_t index = nil;
 
 	while (h)
 	{
@@ -108,10 +108,10 @@ size_t print_list_str(const list_t *h)
 int delete_node_at_index(list_t **head, unsigned int index)
 {
 	list_t *node, *prev_node;
-	unsigned int i = none;
+	unsigned int i = nil;
 
 	if (head == NULL || *head == NULL)
-		return (none);
+		return (nil);
 
 	if (!index)
 	{
@@ -119,7 +119,7 @@ int delete_node_at_index(list_t **head, unsigned int index)
 		*head = (*head)->next;
 		free(node->str);
 		free(node);
-		return (uno);
+		return (solo);
 	}
 	node = *head;
 	while (node)
@@ -129,13 +129,13 @@ int delete_node_at_index(list_t **head, unsigned int index)
 			prev_node->next = node->next;
 			free(node->str);
 			free(node);
-			return (uno);
+			return (solo);
 		}
 		i++;
 		prev_node = node;
 		node = node->next;
 	}
-	return (none);
+	return (nil);
 }
 
 /**
