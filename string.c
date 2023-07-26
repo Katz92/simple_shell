@@ -9,10 +9,10 @@
 
 int _strlen(char *s)
 {
-	int index = none;
+	int index = nil;
 
 	if (s == NULL)
-		return (none);
+		return (nil);
 
 	while (*s++)
 		index++;
@@ -40,9 +40,9 @@ int _strcmp(char *f_strang, char *s_strang)
 	}
 
 	if (*f_strang == *s_strang)
-		return (none);
+		return (nil);
 	else
-		return (*f_strang  <  *s_strang ? n_uno : uno);
+		return (*f_strang  <  *s_strang ? n_solo : solo);
 }
 
 /**

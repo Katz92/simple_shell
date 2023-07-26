@@ -26,8 +26,8 @@ int is_delim(char cc, char *dmt)
 {
 	while (*dmt)
 		if (*dmt++ == cc)
-			return (uno);
-	return (none);
+			return (solo);
+	return (nil);
 }
 
 /**
@@ -39,9 +39,9 @@ int is_delim(char cc, char *dmt)
 int _isalpha(int x)
 {
 	if ((x >= 'a' && x <= 'z') || (x >= 'A' && x <= 'Z'))
-		return (uno);
+		return (solo);
 	else
-		return (none);
+		return (nil);
 }
 
 /**
@@ -52,25 +52,25 @@ int _isalpha(int x)
 
 int _atoi(char *y)
 {
-	int i, sgn = uno, flag = none, out_put;
-	unsigned int output = none;
+	int i, sgn = solo, flag = nil, out_put;
+	unsigned int output = nil;
 
-	for (i = none; y[i] != '\0' && flag != duo; i++)
+	for (i = nil; y[i] != '\0' && flag != duo; i++)
 	{
 		if (y[i] == '-')
-			sgn *= n_uno;
+			sgn *= n_solo;
 
 		if (y[i] >= '0' && y[i] <= '9')
 		{
-			flag = uno;
+			flag = solo;
 			output *= 10;
 			output += (y[i] - '0');
 		}
-		else if (flag == uno)
+		else if (flag == solo)
 			flag = duo;
 	}
 
-	if (sgn == n_uno)
+	if (sgn == n_solo)
 		out_put = -output;
 	else
 		out_put = output;

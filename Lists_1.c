@@ -9,7 +9,7 @@
 
 size_t list_len(const list_t *h)
 {
-	size_t i = none;
+	size_t i = nil;
 
 	while (h)
 	{
@@ -35,15 +35,15 @@ char **list_to_strings(list_t *head)
 
 	if (!head || !i)
 		return (NULL);
-	strs = malloc(sizeof(char *) * (i + uno));
+	strs = malloc(sizeof(char *) * (i + solo));
 	if (!strs)
 		return (NULL);
-	for (i = none; node; node = node->next, i++)
+	for (i = nil; node; node = node->next, i++)
 	{
-		str = malloc(_strlen(node->str) + uno);
+		str = malloc(_strlen(node->str) + solo);
 		if (!str)
 		{
-			for (j = none; j < i; j++)
+			for (j = nil; j < i; j++)
 				free(strs[j]);
 			free(strs);
 			return (NULL);
@@ -65,14 +65,14 @@ char **list_to_strings(list_t *head)
 
 size_t print_list(const list_t *h)
 {
-	size_t i = none;
+	size_t i = nil;
 
 	while (h)
 	{
-		_puts(convert_number(h->num, 10, none));
+		_puts(convert_number(h->num, 10, nil));
 		_putchar(':');
 		_putchar(' ');
-		_puts(h->str ? h->str : "(none)");
+		_puts(h->str ? h->str : "(nil)");
 		_puts("\n");
 		h = h->next;
 		i++;
@@ -96,7 +96,7 @@ list_t *node_starts_with(list_t *node, char *prefix, char c)
 	while (node)
 	{
 		p = starts_with(node->str, prefix);
-		if (p && ((c == n_uno) || (*p == c)))
+		if (p && ((c == n_solo) || (*p == c)))
 			return (node);
 		node = node->next;
 	}
@@ -113,7 +113,7 @@ list_t *node_starts_with(list_t *node, char *prefix, char c)
 
 ssize_t get_node_index(list_t *head, list_t *node)
 {
-	size_t i = none;
+	size_t i = nil;
 
 	while (head)
 	{
@@ -122,5 +122,5 @@ ssize_t get_node_index(list_t *head, list_t *node)
 		head = head->next;
 		i++;
 	}
-	return (n_uno);
+	return (n_solo);
 }

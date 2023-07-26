@@ -12,7 +12,7 @@ char **get_environ(info_t *info)
 	if (info->env_changed || !info->environ)
 	{
 		info->environ = list_to_strings(info->env);
-		info->env_changed = none;
+		info->env_changed = nil;
 	}
 
 	return (info->environ);
@@ -29,11 +29,11 @@ char **get_environ(info_t *info)
 int _unsetenv(info_t *info, char *var)
 {
 	list_t *node = info->env;
-	size_t index = none;
+	size_t index = nil;
 	char *p;
 
 	if (!node || !var)
-		return (none);
+		return (nil);
 
 	while (node)
 	{
@@ -41,7 +41,7 @@ int _unsetenv(info_t *info, char *var)
 		if (p && *p == '=')
 		{
 			info->env_changed = delete_node_at_index(&(info->env), index);
-			index = none;
+			index = nil;
 			node = info->env;
 			continue;
 		}
@@ -68,11 +68,11 @@ int _setenv(info_t *info, char *var, char *value)
 	char *p;
 
 	if (!var || !value)
-		return (none);
+		return (nil);
 
 	buf = malloc(_strlen(var) + _strlen(value) + duo);
 	if (!buf)
-		return (uno);
+		return (solo);
 	_strcpy(buf, var);
 	_strcat(buf, "=");
 	_strcat(buf, value);
@@ -84,13 +84,13 @@ int _setenv(info_t *info, char *var, char *value)
 		{
 			free(node->str);
 			node->str = buf;
-			info->env_changed = uno;
-			return (none);
+			info->env_changed = solo;
+			return (nil);
 		}
 		node = node->next;
 	}
-	add_node_end(&(info->env), buf, none);
+	add_node_end(&(info->env), buf, nil);
 	free(buf);
-	info->env_changed = uno;
-	return (none);
+	info->env_changed = solo;
+	return (nil);
 }

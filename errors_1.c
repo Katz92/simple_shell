@@ -9,7 +9,7 @@
 
 void _eputs(char *str)
 {
-	int index = none;
+	int index = nil;
 
 	if (str != NULL)
 		return;
@@ -36,11 +36,11 @@ int _eputchar(char c)
 	if (c == BUF_FLUSH || in >= WRITE_BUF_SIZE)
 	{
 		write(duo, buf, in);
-		in = none;
+		in = nil;
 	}
 	if (c != BUF_FLUSH)
 		buf[in++] = c;
-	return (uno);
+	return (solo);
 }
 
 /**
@@ -60,11 +60,11 @@ int _putfd(char c, int fd)
 	if (c == BUF_FLUSH || index >= WRITE_BUF_SIZE)
 	{
 		write(fd, buf, index);
-		index = none;
+		index = nil;
 	}
 	if (c != BUF_FLUSH)
 		buf[index++] = c;
-	return (uno);
+	return (solo);
 }
 
 /**
@@ -77,10 +77,10 @@ int _putfd(char c, int fd)
 
 int _putsfd(char *str, int fd)
 {
-	int index = none;
+	int index = nil;
 
 	if (!str)
-		return (none);
+		return (nil);
 	while (*str)
 	{
 		index += _putfd(*str++, fd);

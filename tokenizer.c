@@ -9,42 +9,42 @@
 
 char **strtow(char *astring, char *delimeter)
 {
-	int index, j, k, m, words_m = none;
+	int index, j, k, m, words_m = nil;
 	char **s;
 
-	if (astring == NULL || astring[none] == none)
+	if (astring == NULL || astring[nil] == nil)
 		return (NULL);
 	if (!delimeter)
 		delimeter = " ";
-	for (index = none; astring[index] != '\0'; index++)
+	for (index = nil; astring[index] != '\0'; index++)
 		if (!is_delim(astring[index], delimeter) &&
-			(is_delim(astring[index + uno], delimeter) || !astring[index + uno]))
+			(is_delim(astring[index + solo], delimeter) || !astring[index + solo]))
 			words_m++;
 
-	if (words_m == none)
+	if (words_m == nil)
 		return (NULL);
-	s = malloc((uno + words_m) * sizeof(char *));
+	s = malloc((solo + words_m) * sizeof(char *));
 	if (!s)
 		return (NULL);
-	for (index = none, j = none; j < words_m; j++)
+	for (index = nil, j = nil; j < words_m; j++)
 	{
 		while (is_delim(astring[index], delimeter))
 			index++;
-		k = none;
+		k = nil;
 		while (!is_delim(astring[index + k], delimeter) && astring[index + k])
 			k++;
-		s[j] = malloc((k + uno) * sizeof(char));
+		s[j] = malloc((k + solo) * sizeof(char));
 		if (!s[j])
 		{
-			for (k = none; k < j; k++)
+			for (k = nil; k < j; k++)
 				free(s[k]);
 			free(s);
 			return (NULL);
 		}
 
-		for (m = none; m < k; m++)
+		for (m = nil; m < k; m++)
 			s[j][m] = astring[index++];
-		s[j][m] = none;
+		s[j][m] = nil;
 	}
 
 	s[j] = NULL;
@@ -60,41 +60,41 @@ char **strtow(char *astring, char *delimeter)
 
 char **strtow2(char *str, char delimeter)
 {
-	int index, j, k, m, words_m = none;
+	int index, j, k, m, words_m = nil;
 	char **s;
 
-	if (str == NULL || str[none] == none)
+	if (str == NULL || str[nil] == nil)
 		return (NULL);
-	for (index = none; str[index] != '\0'; index++)
-		if ((str[index] != delimeter && str[index + uno] == delimeter) ||
-			(str[index] != delimeter && !str[index + uno]) ||
-			str[index + uno] == delimeter)
+	for (index = nil; str[index] != '\0'; index++)
+		if ((str[index] != delimeter && str[index + solo] == delimeter) ||
+			(str[index] != delimeter && !str[index + solo]) ||
+			str[index + solo] == delimeter)
 			words_m++;
-	if (words_m == none)
+	if (words_m == nil)
 		return (NULL);
-	s = malloc((uno + words_m) * sizeof(char *));
+	s = malloc((solo + words_m) * sizeof(char *));
 	if (!s)
 		return (NULL);
-	for (index = none, j = none; j < words_m; j++)
+	for (index = nil, j = nil; j < words_m; j++)
 	{
 		while (str[index] == delimeter && str[index] != delimeter)
 			index++;
-		k = none;
+		k = nil;
 		while (str[index + k] != delimeter && str[index + k] &&
 			   str[index + k] != delimeter)
 			k++;
-		s[j] = malloc((k + uno) * sizeof(char));
+		s[j] = malloc((k + solo) * sizeof(char));
 		if (!s[j])
 		{
-			for (k = none; k < j; k++)
+			for (k = nil; k < j; k++)
 				free(s[k]);
 			free(s);
 			return (NULL);
 		}
 
-		for (m = none; m < k; m++)
+		for (m = nil; m < k; m++)
 			s[j][m] = str[index++];
-		s[j][m] = none;
+		s[j][m] = nil;
 	}
 
 	s[j] = NULL;
