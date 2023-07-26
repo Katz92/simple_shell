@@ -10,16 +10,16 @@
 
 char *_strcpy(char *destination, char *source)
 {
-	int index = none;
+	int index = nil;
 
-	if (destination == source || source == none)
+	if (destination == source || source == nil)
 		return (destination);
 	while (source[index])
 	{
 		destination[index] = source[index];
 		index++;
 	}
-	destination[index] = none;
+	destination[index] = nil;
 	return (destination);
 }
 
@@ -32,14 +32,14 @@ char *_strcpy(char *destination, char *source)
 
 char *_strdup(const char *str)
 {
-	int length = none;
+	int length = nil;
 	char *ret;
 
 	if (str == NULL)
 		return (NULL);
 	while (*str++)
 		length++;
-	ret = malloc(sizeof(char) * (length + uno));
+	ret = malloc(sizeof(char) * (length + solo));
 	if (!ret)
 		return (NULL);
 	for (length++; length--;)
@@ -56,7 +56,7 @@ char *_strdup(const char *str)
 
 void _puts(char *str)
 {
-	int index = none;
+	int index = nil;
 
 	if (!str)
 		return;
@@ -82,10 +82,10 @@ int _putchar(char c)
 
 	if (c == BUF_FLUSH || index >= WRITE_BUF_SIZE)
 	{
-		write(uno, buf, index);
-		index = none;
+		write(solo, buf, index);
+		index = nil;
 	}
 	if (c != BUF_FLUSH)
 		buf[index++] = c;
-	return (uno);
+	return (solo);
 }
