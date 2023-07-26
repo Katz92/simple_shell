@@ -13,27 +13,27 @@ int is_chain(info_t *info, char *buf, size_t *p)
 {
 	size_t j = *p;
 
-	if (buf[j] == '|' && buf[j + uno] == '|')
+	if (buf[j] == '|' && buf[j + solo] == '|')
 	{
-		buf[j] = none;
+		buf[j] = nil;
 		j++;
 		info->cmd_buf_type = CMD_OR;
 	}
-	else if (buf[j] == '&' && buf[j + uno] == '&')
+	else if (buf[j] == '&' && buf[j + solo] == '&')
 	{
-		buf[j] = none;
+		buf[j] = nil;
 		j++;
 		info->cmd_buf_type = CMD_AND;
 	}
 	else if (buf[j] == ';') /* found end of this command */
 	{
-		buf[j] = none; /* replace semicolon with null */
+		buf[j] = nil; /* replace semicolon with null */
 		info->cmd_buf_type = CMD_CHAIN;
 	}
 	else
-		return (none);
+		return (nil);
 	*p = j;
-	return (uno);
+	return (solo);
 }
 
 /**
@@ -55,7 +55,7 @@ void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 	{
 		if (info->status)
 		{
-			buf[i] = none;
+			buf[i] = nil;
 			j = len;
 		}
 	}
@@ -63,7 +63,7 @@ void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 	{
 		if (!info->status)
 		{
-			buf[i] = none;
+			buf[i] = nil;
 			j = len;
 		}
 	}
@@ -84,21 +84,21 @@ int replace_alias(info_t *info)
 	list_t *node;
 	char *p;
 
-	for (i = none; i < 10; i++)
+	for (i = nil; i < 10; i++)
 	{
-		node = node_starts_with(info->alias, info->argv[none], '=');
+		node = node_starts_with(info->alias, info->argv[nil], '=');
 		if (!node)
-			return (none);
-		free(info->argv[none]);
+			return (nil);
+		free(info->argv[nil]);
 		p = _strchr(node->str, '=');
 		if (!p)
-			return (none);
-		p = _strdup(p + uno);
+			return (nil);
+		p = _strdup(p + solo);
 		if (!p)
-			return (none);
-		info->argv[none] = p;
+			return (nil);
+		info->argv[nil] = p;
 	}
-	return (uno);
+	return (solo);
 }
 
 /**
@@ -110,36 +110,36 @@ int replace_alias(info_t *info)
 
 int replace_vars(info_t *info)
 {
-	int i = none;
+	int i = nil;
 	list_t *node;
 
-	for (i = none; info->argv[i]; i++)
+	for (i = nil; info->argv[i]; i++)
 	{
-		if (info->argv[i][none] != '$' || !info->argv[i][uno])
+		if (info->argv[i][nil] != '$' || !info->argv[i][solo])
 			continue;
 
 		if (!_strcmp(info->argv[i], "$?"))
 		{
 			replace_string(&(info->argv[i]),
-						   _strdup(convert_number(info->status, 10, none)));
+						   _strdup(convert_number(info->status, 10, nil)));
 			continue;
 		}
 		if (!_strcmp(info->argv[i], "$$"))
 		{
 			replace_string(&(info->argv[i]),
-						   _strdup(convert_number(getpid(), 10, none)));
+						   _strdup(convert_number(getpid(), 10, nil)));
 			continue;
 		}
-		node = node_starts_with(info->env, &info->argv[i][uno], '=');
+		node = node_starts_with(info->env, &info->argv[i][solo], '=');
 		if (node)
 		{
 			replace_string(&(info->argv[i]),
-						   _strdup(_strchr(node->str, '=') + uno));
+						   _strdup(_strchr(node->str, '=') + solo));
 			continue;
 		}
 		replace_string(&info->argv[i], _strdup(""));
 	}
-	return (none);
+	return (nil);
 }
 
 /**
@@ -154,5 +154,5 @@ int replace_string(char **old, char *new)
 {
 	free(*old);
 	*old = new;
-	return (uno);
+	return (solo);
 }
