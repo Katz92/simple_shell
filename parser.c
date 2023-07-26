@@ -14,13 +14,13 @@ int is_cmd(info_t *info_struct, char *path)
 
 	(void)info_struct;
 	if (path == NULL || stat(path, &st))
-		return (false_infor);
+		return (false_status);
 
 	if (st.st_mode & S_IFREG)
 	{
-		return (true_infor);
+		return (true_status);
 	}
-	return (false_infor);
+	return (false_status);
 }
 
 /**
