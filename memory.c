@@ -13,7 +13,7 @@ int bfree(void **pointer)
 	{
 		free(*pointer);
 		*pointer = NULL;
-		return (uno);
+		return (solo);
 	}
-	return (none);
+	return (nil);
 }
