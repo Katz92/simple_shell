@@ -10,7 +10,7 @@ void clear_info(info_t *info)
 	info->arg = NULL;
 	info->argv = NULL;
 	info->path = NULL;
-	info->argc = none;
+	info->argc = nil;
 }
 
 /**
@@ -21,9 +21,9 @@ void clear_info(info_t *info)
 
 void set_info(info_t *info, char **av)
 {
-	int i = none;
+	int i = nil;
 
-	info->fname = av[none];
+	info->fname = av[nil];
 	if (info->arg)
 	{
 		info->argv = strtow(info->arg, " \t");
@@ -33,11 +33,11 @@ void set_info(info_t *info, char **av)
 			info->argv = malloc(sizeof(char *) * 2);
 			if (info->argv)
 			{
-				info->argv[none] = _strdup(info->arg);
-				info->argv[uno] = NULL;
+				info->argv[nil] = _strdup(info->arg);
+				info->argv[solo] = NULL;
 			}
 		}
-		for (i = none; info->argv && info->argv[i]; i++)
+		for (i = nil; info->argv && info->argv[i]; i++)
 			;
 		info->argc = i;
 
