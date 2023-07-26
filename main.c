@@ -20,16 +20,16 @@ int main(int ac, char **av)
 
 	if (ac == duo)
 	{
-		f_x = open(av[uno], O_RDONLY);
-		if (f_x == n_uno)
+		f_x = open(av[solo], O_RDONLY);
+		if (f_x == n_solo)
 		{
 			if (errno == EACCES)
 				exit(126);
 			if (errno == ENOENT)
 			{
-				_eputs(av[none]);
+				_eputs(av[nil]);
 				_eputs(": 0: Can't open ");
-				_eputs(av[uno]);
+				_eputs(av[solo]);
 				_eputchar('\n');
 				_eputchar(BUF_FLUSH);
 				exit(127);
