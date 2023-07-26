@@ -12,21 +12,21 @@ int _myexit(info_t *info)
 {
 	int check_exit;
 
-	if (info->argv[uno]) /* If there is an exit arguement */
+	if (info->argv[solo]) /* If there is an exit arguement */
 	{
-		check_exit = _erratoi(info->argv[uno]);
-		if (check_exit == n_uno)
+		check_exit = _erratoi(info->argv[solo]);
+		if (check_exit == n_solo)
 		{
 			info->status = duo;
 			print_error(info, "Illegal number: ");
-			_eputs(info->argv[uno]);
+			_eputs(info->argv[solo]);
 			_eputchar('\n');
-			return (uno);
+			return (solo);
 		}
-		info->err_num = _erratoi(info->argv[uno]);
+		info->err_num = _erratoi(info->argv[solo]);
 		return (-2);
 	}
-	info->err_num = n_uno;
+	info->err_num = n_solo;
 	return (-2);
 }
 
@@ -45,7 +45,7 @@ int _mycd(info_t *info)
 	s = getcwd(buffer, 1024);
 	if (!s)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
-	if (!info->argv[uno])
+	if (!info->argv[solo])
 	{
 		directory = _getenv(info, "HOME=");
 		if (!directory)
@@ -54,31 +54,31 @@ int _mycd(info_t *info)
 		else
 			chdirectory = chdir(directory);
 	}
-	else if (_strcmp(info->argv[uno], "-") == none)
+	else if (_strcmp(info->argv[solo], "-") == nil)
 	{
 		if (!_getenv(info, "OLDPWD="))
 		{
 			_puts(s);
 			_putchar('\n');
-			return (uno);
+			return (solo);
 		}
 		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
 		chdirectory = /* TODO: what should this be? */
 			chdir((directory = _getenv(info, "OLDPWD=")) ? directory : "/");
 	}
 	else
-		chdirectory = chdir(info->argv[uno]);
-	if (chdirectory == n_uno)
+		chdirectory = chdir(info->argv[solo]);
+	if (chdirectory == n_solo)
 	{
 		print_error(info, "can't cd to ");
-		_eputs(info->argv[uno]), _eputchar('\n');
+		_eputs(info->argv[solo]), _eputchar('\n');
 	}
 	else
 	{
 		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
 		_setenv(info, "PWD", getcwd(buffer, 1024));
 	}
-	return (none);
+	return (nil);
 }
 
 /**
@@ -94,7 +94,7 @@ int _myhelp(info_t *info)
 
 	arguments_array = info->argv;
 	_puts("help call works. Function not yet implemented \n");
-	if (none)
+	if (nil)
 		_puts(*arguments_array); /* temp att_unused workaround */
-	return (none);
+	return (nil);
 }
