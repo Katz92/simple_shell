@@ -9,22 +9,22 @@
 
 int _erratoi(char *s)
 {
-	int index = none;
-	unsigned long int result = none;
+	int index = nil;
+	unsigned long int result = nil;
 
 	if (*s == '+')
 		s++; /* TODO: why does this make main return 255? */
-	for (index = none; s[index] != '\0'; index++)
+	for (index = nil; s[index] != '\0'; index++)
 	{
 		if (s[index] >= '0' && s[index] <= '9')
 		{
 			result *= 10;
 			result += (s[index] - '0');
 			if (result > INT_MAX)
-				return (none);
+				return (nil);
 		}
 		else
-			return (n_uno);
+			return (n_solo);
 	}
 	return (result);
 }
@@ -43,7 +43,7 @@ void print_error(info_t *info, char *estr)
 	_eputs(": ");
 	print_d(info->line_count, STDERR_FILENO);
 	_eputs(": ");
-	_eputs(info->argv[none]);
+	_eputs(info->argv[nil]);
 	_eputs(": ");
 	_eputs(estr);
 }
@@ -59,12 +59,12 @@ void print_error(info_t *info, char *estr)
 int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
-	int index, count = none;
+	int index, count = nil;
 	unsigned int _abs_, current;
 
 	if (fd == STDERR_FILENO)
 		__putchar = _eputchar;
-	if (input < none)
+	if (input < nil)
 	{
 		_abs_ = -input;
 		__putchar('-');
@@ -73,7 +73,7 @@ int print_d(int input, int fd)
 	else
 		_abs_ = input;
 	current = _abs_;
-	for (index = 1000000000; index > uno; index /= 10)
+	for (index = 1000000000; index > solo; index /= 10)
 	{
 		if (_abs_ / index)
 		{
@@ -101,11 +101,11 @@ char *convert_number(long int num, int base, int flags)
 {
 	static char *array_;
 	static char buffer[50];
-	char sign = none;
+	char sign = nil;
 	char *ptr;
 	unsigned long anum = num;
 
-	if (!(flags & CONVERT_UNSIGNED) && num < none)
+	if (!(flags & CONVERT_UNSIGNED) && num < nil)
 	{
 		anum = -num;
 		sign = '-';
@@ -118,7 +118,7 @@ char *convert_number(long int num, int base, int flags)
 	do {
 		*--ptr = array_[anum % base];
 		anum /= base;
-	} while (anum != none);
+	} while (anum != nil);
 
 	if (sign)
 		*--ptr = sign;
@@ -136,8 +136,8 @@ void remove_comments(char *buff)
 {
 	int index;
 
-	for (index = none; buff[index] != '\0'; index++)
-		if (buff[index] == '#' && (!index || buff[index - uno] == ' '))
+	for (index = nil; buff[index] != '\0'; index++)
+		if (buff[index] == '#' && (!index || buff[index - solo] == ' '))
 		{
 			buff[index] = '\0';
 			break;
