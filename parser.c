@@ -35,12 +35,12 @@ int is_cmd(info_t *info_struct, char *path)
 char *dup_chars(char *pathstr, int start, int stop)
 {
 	static char buf[1024];
-	int index = none, k = none;
+	int index = nil, k = nil;
 
-	for (k = none, index = start; index < stop; index++)
+	for (k = nil, index = start; index < stop; index++)
 		if (pathstr[index] != ':')
 			buf[k++] = pathstr[index];
-	buf[k] = none;
+	buf[k] = nil;
 	return (buf);
 }
 
@@ -55,7 +55,7 @@ char *dup_chars(char *pathstr, int start, int stop)
 
 char *find_path(info_t *info_struct, char *pathstr, char *cmd)
 {
-	int index = none, position = none;
+	int index = nil, position = nil;
 	char *the_path;
 
 	if (!pathstr)
