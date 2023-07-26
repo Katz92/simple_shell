@@ -17,7 +17,7 @@ char *get_history_file(info_t *info)
 	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
 	if (!buf)
 		return (NULL);
-	buf[none] = none;
+	buf[nil] = nil;
 	_strcpy(buf, dir);
 	_strcat(buf, "/");
 	_strcat(buf, HIST_FILE);
@@ -38,12 +38,12 @@ int write_history(info_t *info)
 	list_t *node = NULL;
 
 	if (!filename)
-		return (n_uno);
+		return (n_solo);
 
 	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	free(filename);
-	if (fd == n_uno)
-		return (n_uno);
+	if (fd == n_solo)
+		return (n_solo);
 	for (node = info->history; node; node = node->next)
 	{
 		_putsfd(node->str, fd);
@@ -51,7 +51,7 @@ int write_history(info_t *info)
 	}
 	_putfd(BUF_FLUSH, fd);
 	close(fd);
-	return (uno);
+	return (solo);
 }
 
 /**
@@ -63,43 +63,43 @@ int write_history(info_t *info)
 
 int read_history(info_t *info)
 {
-	int i, last = none, linecount = none;
-	ssize_t fd, rdlen, fsize = none;
+	int i, last = nil, linecount = nil;
+	ssize_t fd, rdlen, fsize = nil;
 	struct stat st;
 	char *buf = NULL, *filename = get_history_file(info);
 
 	if (!filename)
-		return (none);
+		return (nil);
 
 	fd = open(filename, O_RDONLY);
 	free(filename);
-	if (fd == n_uno)
-		return (none);
+	if (fd == n_solo)
+		return (nil);
 	if (!fstat(fd, &st))
 		fsize = st.st_size;
 	if (fsize < 2)
-		return (none);
-	buf = malloc(sizeof(char) * (fsize + uno));
+		return (nil);
+	buf = malloc(sizeof(char) * (fsize + solo));
 	if (!buf)
-		return (none);
+		return (nil);
 	rdlen = read(fd, buf, fsize);
-	buf[fsize] = none;
-	if (rdlen <= none)
-		return (free(buf), none);
+	buf[fsize] = nil;
+	if (rdlen <= nil)
+		return (free(buf), nil);
 	close(fd);
-	for (i = none; i < fsize; i++)
+	for (i = nil; i < fsize; i++)
 		if (buf[i] == '\n')
 		{
-			buf[i] = none;
+			buf[i] = nil;
 			build_history_list(info, buf + last, linecount++);
-			last = i + uno;
+			last = i + solo;
 		}
 	if (last != i)
 		build_history_list(info, buf + last, linecount++);
 	free(buf);
 	info->histcount = linecount;
 	while (info->histcount-- >= HIST_MAX)
-		delete_node_at_index(&(info->history), none);
+		delete_node_at_index(&(info->history), nil);
 	renumber_history(info);
 	return (info->histcount);
 }
@@ -123,7 +123,7 @@ int build_history_list(info_t *info, char *buf, int linecount)
 
 	if (!info->history)
 		info->history = node;
-	return (none);
+	return (nil);
 }
 
 /**
@@ -136,7 +136,7 @@ int build_history_list(info_t *info, char *buf, int linecount)
 int renumber_history(info_t *info)
 {
 	list_t *node = info->history;
-	int i = none;
+	int i = nil;
 
 	while (node)
 	{
